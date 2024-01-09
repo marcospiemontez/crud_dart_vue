@@ -4,8 +4,9 @@ import 'api/login_api.dart';
 import 'infra/custom_server.dart';
 
 void main() async {
-  var cascadeHandler = Cascade()
-      .add(LoginApi().handler).add(BlogApi().handler).handler;
+  var cascadeHandler = Cascade().add(LoginApi().handler).add(BlogApi().handler).handler;
 
-  await CustomServer().initialize(cascadeHandler);
+  var handler = Pipeline().addMiddleware(logRequests()).addHandler(cascadeHandler);
+
+  await CustomServer().initialize(handler);
 }
