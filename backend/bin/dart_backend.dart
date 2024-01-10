@@ -1,13 +1,15 @@
 import 'package:shelf/shelf.dart';
-import 'api/blog_api.dart';
-import 'api/login_api.dart';
+import 'apis/blog_api.dart';
+import 'apis/login_api.dart';
 import 'infra/custom_server.dart';
+import 'infra/middleware_interception.dart';
+import 'services/news_service.dart';
 import 'utils/dot_env_service.dart';
 
 void main() async {
-  var cascadeHandler = Cascade().add(LoginApi().handler).add(BlogApi().handler).handler;
+  var cascadeHandler = Cascade().add(LoginApi().handler).add(BlogApi(NewsService()).handler).handler;
   final service = DotEnvService.instance;
-  var handler = Pipeline().addMiddleware(logRequests()).addHandler(cascadeHandler);
+  var handler = Pipeline().addMiddleware(logRequests()).addMiddleware(MiddlewareInterception().middleware).addHandler(cascadeHandler);
 
   String? serverAddress;
   int? serverPort;
