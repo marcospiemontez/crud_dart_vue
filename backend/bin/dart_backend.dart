@@ -18,9 +18,7 @@ void main() async {
 
   var cascadeHandler = Cascade()
       .add(LoginApi(_securityService).getHandler(middlewares: []))
-      .add(BlogApi(NewsService()).getHandler(
-        middlewares: [_securityService.authorization, _securityService.verifyJwt],
-      ))
+      .add(BlogApi(NewsService()).getHandler(isSecurity: true))
       .handler;
   var handler = Pipeline()
       .addMiddleware(logRequests())
