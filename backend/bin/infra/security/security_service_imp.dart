@@ -10,12 +10,10 @@ class SecurityServiceImp implements SecurityService<JWT> {
 
   @override
   Future<String> generateJWT(String userID) async {
-    int iat = DateTime.now().millisecondsSinceEpoch ~/ 1000; // Convertendo para segundos
-    JWT jwt = JWT({
-      "iat": iat,
+    var jwt = JWT({
+      "iat": DateTime.now().millisecondsSinceEpoch,
       "userID": userID,
       "roles": ["admin", "user"],
-      "exp": DateTime.now().add(Duration(days: 1)).toUtc().toIso8601String(),
     });
 
     String key = service["jwt_key"] as String;
@@ -27,7 +25,6 @@ class SecurityServiceImp implements SecurityService<JWT> {
   @override
   Future<JWT?> validateJWT(String token) async {
     String key = service["jwt_key"] as String;
-    print(token);
     try {
       return JWT.verify(token, SecretKey(key));
     } on JWTInvalidException {
