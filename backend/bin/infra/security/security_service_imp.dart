@@ -1,12 +1,12 @@
 import "package:shelf/shelf.dart";
 import "package:shelf/src/middleware.dart";
 
-import "../../utils/dot_env_service.dart";
+import "../../utils/app_config.dart";
 import "security_service.dart";
 import "package:dart_jsonwebtoken/dart_jsonwebtoken.dart";
 
 class SecurityServiceImp implements SecurityService<JWT> {
-  final service = DotEnvService.instance;
+  final envConfig = AppConfig();
 
   @override
   Future<String> generateJWT(String userID) async {
@@ -16,7 +16,7 @@ class SecurityServiceImp implements SecurityService<JWT> {
       "roles": ["admin", "user"],
     });
 
-    String key = service["jwt_key"] as String;
+    String key = envConfig.jwtKey;
     String token = jwt.sign(SecretKey(key));
 
     return token;
@@ -24,7 +24,7 @@ class SecurityServiceImp implements SecurityService<JWT> {
 
   @override
   Future<JWT?> validateJWT(String token) async {
-    String key = service["jwt_key"] as String;
+    String key = envConfig.jwtKey;
     try {
       return JWT.verify(token, SecretKey(key));
     } on JWTInvalidException {
