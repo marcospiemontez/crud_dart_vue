@@ -12,7 +12,7 @@ class NewsModel {
     return NewsModel()
       ..id = map["id"]?.toInt()
       ..title = map["title"]
-      ..description = map["description"]
+      ..description = map["description"].toString()
       ..createdAt = map["createdAt"]
       ..updatedAt = map["updatedAt"]
       ..userId = map["user_id"]?.toInt();
@@ -20,6 +20,7 @@ class NewsModel {
 
   factory NewsModel.fromRequest(Map map) {
     return NewsModel()
+      ..id = map["id"]?.toInt()
       ..title = map["title"]
       ..description = map["description"]
       ..userId = map["user_id"]?.toInt();

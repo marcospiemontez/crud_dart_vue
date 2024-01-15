@@ -29,29 +29,6 @@ class UserApi extends Api {
       return Response.ok(jsonEncode(newsMap));
     });
 
-    // router.put('/user/:id', (Request req) async {
-    //   var userId = int.tryParse(req.params['id'] ?? '');
-    //   if (userId == null) {
-    //     return Response(400, body: 'Invalid user ID');
-    //   }
-    //
-    //   var body = await req.readAsString();
-    //
-    //   if (body.isEmpty) {
-    //     return Response(400, body: 'Request body is empty');
-    //   }
-    //
-    //   var updatedUser = UserModel.fromRequest(jsonDecode(body));
-    //
-    //   if (updatedUser.id != userId) {
-    //     return Response(400, body: 'User ID mismatch between path and body');
-    //   }
-    //
-    //   var result = await _userService.save(updatedUser);
-    //
-    //   return result ? Response(200) : Response(500);
-    // });
-
     return createHandler(router: router, isSecurity: isSecurity, middlewares: middlewares);
   }
 }
