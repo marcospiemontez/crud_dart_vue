@@ -36,6 +36,12 @@ class UserModel {
       ..password = map["password"];
   }
 
+  factory UserModel.fromEmail(Map map) {
+    return UserModel()
+      ..id = map["id"]?.toInt()
+      ..password = map["password"];
+  }
+
   @override
   String toString() {
     return 'UserModel{id: $id, name: $name, email: $email, isActive: $isActive, createdAt: $createdAt, updatedAt: $updatedAt}';

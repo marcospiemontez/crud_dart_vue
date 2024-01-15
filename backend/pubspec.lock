@@ -181,10 +181,10 @@ packages:
     dependency: "direct dev"
     description:
       name: lints
-      sha256: "0a217c6c989d21039f1498c3ed9f3ed71b354e69873f13a8dfc3c9fe76f1b452"
+      sha256: cbf8d4b858bb0134ef3ef87841abdf8d63bfc255c266b7bf6b39daa1085c4290
       url: "https://pub.dev"
     source: hosted
-    version: "2.1.1"
+    version: "3.0.0"
   logging:
     dependency: transitive
     description:
@@ -241,6 +241,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.0"
+  password_dart:
+    dependency: "direct main"
+    description:
+      name: password_dart
+      sha256: ca7de1298164ff2681a32dc2512177667d3ffd2c125075f371dd3dee813f11d4
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.1"
   path:
     dependency: transitive
     description:
@@ -373,10 +381,10 @@ packages:
     dependency: "direct dev"
     description:
       name: test
-      sha256: "3d028996109ad5c253674c7f347822fb994a087614d6f353e6039704b4661ff2"
+      sha256: "694c108e13c6b35b15fcb0f8f03eddf8373f93b044c9497b5e81ce09f7381bda"
       url: "https://pub.dev"
     source: hosted
-    version: "1.25.0"
+    version: "1.25.1"
   test_api:
     dependency: transitive
     description:
@@ -421,10 +429,10 @@ packages:
     dependency: transitive
     description:
       name: web
-      sha256: edc8a9573dd8c5a83a183dae1af2b6fd4131377404706ca4e5420474784906fa
+      sha256: "4188706108906f002b3a293509234588823c8c979dc83304e229ff400c996b05"
       url: "https://pub.dev"
     source: hosted
-    version: "0.4.0"
+    version: "0.4.2"
   web_socket_channel:
     dependency: transitive
     description:

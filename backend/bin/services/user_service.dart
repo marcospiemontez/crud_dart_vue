@@ -1,10 +1,12 @@
+import 'package:password_dart/password_dart.dart';
+
 import '../dao/user_dao.dart';
 import '../models/user_model.dart';
 import 'generic_service.dart';
 
 class UserService implements GenericService<UserModel> {
-
   final UserDAO _userDAO;
+
   UserService(this._userDAO);
 
   @override
@@ -22,8 +24,11 @@ class UserService implements GenericService<UserModel> {
     if (value.id != null) {
       result = _userDAO.update(value);
     } else {
-      result = _userDAO.create(value);
+      final hash = Password.hash(value.password!, PBKDF2());
+      value.password = hash;
     }
-    return result;
+    return _userDAO.create(value);
   }
+
+  Future<UserModel?> findByEmail(String email) async => _userDAO.findByEmail(email);
 }

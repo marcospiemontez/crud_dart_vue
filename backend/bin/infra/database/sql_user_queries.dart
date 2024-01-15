@@ -4,4 +4,5 @@ class SQLUserQueries {
   final String findAll = "SELECT * FROM users";
   final String findById = "SELECT * FROM users WHERE id = ?";
   final String update = "UPDATE users SET name = ?, password = ? WHERE id = ?";
+  final String findByEmail = "SELECT * FROM users WHERE email = ?";
 }
