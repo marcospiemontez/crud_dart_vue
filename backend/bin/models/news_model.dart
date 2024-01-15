@@ -1,30 +1,36 @@
 class NewsModel {
-  final int? id;
-  final String title;
-  final String description;
-  final String image;
-  final DateTime createdAt;
-  final DateTime? updatedAt;
+  int? id;
+  String? title;
+  String? description;
+  DateTime? createdAt;
+  DateTime? updatedAt;
+  int? userId;
 
-  NewsModel(this.id, this.title, this.description, this.image, this.createdAt, this.updatedAt);
+  NewsModel();
 
-  factory NewsModel.fromJson(Map map) {
-    return NewsModel(
-      map['id'] as int?,
-      map['title'],
-      map['description'],
-      map['image'],
-      map['createdAt'] != null ? DateTime.fromMicrosecondsSinceEpoch(map['createdAt']) : DateTime.now(),
-      map['updatedAt'] != null ? DateTime.fromMicrosecondsSinceEpoch(map['updatedAt']) : null,
-    );
+  factory NewsModel.fromMap(Map map) {
+    return NewsModel()
+      ..id = map["id"]?.toInt()
+      ..title = map["title"]
+      ..description = map["description"]
+      ..createdAt = map["createdAt"]
+      ..updatedAt = map["updatedAt"]
+      ..userId = map["user_id"]?.toInt();
+  }
+
+  factory NewsModel.fromRequest(Map map) {
+    return NewsModel()
+      ..title = map["title"]
+      ..description = map["description"]
+      ..userId = map["user_id"]?.toInt();
   }
 
   Map toJson() {
-    return {"id": id, "title": title, "description": description, "image": image};
+    return {"id": id, "title": title, "description": description};
   }
 
   @override
   String toString() {
-    return 'NewModel{id: $id, title: $title, descriptions: $description, image: $image, createdAt: $createdAt, updatedAt: $updatedAt}';
+    return 'NewsModel{id: $id, title: $title, description: $description, createdAt: $createdAt, updatedAt: $updatedAt, userId: $userId}';
   }
 }

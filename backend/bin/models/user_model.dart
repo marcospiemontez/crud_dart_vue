@@ -42,6 +42,17 @@ class UserModel {
       ..password = map["password"];
   }
 
+  Map toJson() {
+    return {
+      "id": id,
+      "name": name,
+      "email": email,
+      "is_active": isActive,
+      "created_at": createdAt?.toIso8601String(),
+      "updated_at": updatedAt?.toIso8601String(),
+    };
+  }
+
   @override
   String toString() {
     return 'UserModel{id: $id, name: $name, email: $email, isActive: $isActive, createdAt: $createdAt, updatedAt: $updatedAt}';

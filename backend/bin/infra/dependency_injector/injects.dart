@@ -1,6 +1,7 @@
-import '../../apis/blog_api.dart';
+import '../../apis/news_api.dart';
 import '../../apis/login_api.dart';
 import '../../apis/user_api.dart';
+import '../../dao/news_dao.dart';
 import '../../dao/user_dao.dart';
 import '../../models/news_model.dart';
 import '../../services/generic_service.dart';
@@ -25,14 +26,20 @@ class Injects {
 
     di.register<SecurityService>(() => SecurityServiceImp());
 
-    di.register<GenericService<NewsModel>>(() => NewsService());
-    di.register<BlogApi>(() => BlogApi(di.getInstance<GenericService<NewsModel>>()));
+    di.register<NewsDao>(() => NewsDao(di.getInstance<DBConfiguration>()));
+
+    di.register<GenericService<NewsModel>>(() => NewsService(di.getInstance<NewsDao>()));
+
+    di.register<NewsApi>(() => NewsApi(di.getInstance<GenericService<NewsModel>>()));
 
     di.register<UserDAO>(() => UserDAO(di.getInstance<DBConfiguration>()));
+
     di.register<UserService>(() => UserService(di.getInstance<UserDAO>()));
+
     di.register<UserApi>(() => UserApi(di.getInstance<UserService>()));
 
     di.register<LoginService>(() => LoginService(di.getInstance<UserService>()));
+
     di.register<LoginApi>(() => LoginApi(di.getInstance<SecurityService>(), di.getInstance<LoginService>()));
 
     return di;

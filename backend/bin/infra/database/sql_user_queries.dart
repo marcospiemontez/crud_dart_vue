@@ -1,8 +1,12 @@
-class SQLUserQueries {
-  final String create = "INSERT INTO users (name, email, password) VALUES (?, ?, ?)";
-  final String delete = "DELETE FROM users WHERE id = ?";
-  final String findAll = "SELECT * FROM users";
-  final String findById = "SELECT * FROM users WHERE id = ?";
-  final String update = "UPDATE users SET name = ?, password = ? WHERE id = ?";
-  final String findByEmail = "SELECT * FROM users WHERE email = ?";
+import 'sql_queries.dart';
+
+class SQLUserQueries extends SQLQueries {
+  SQLUserQueries() : super(
+    create: "INSERT INTO users (name, email, password) VALUES (?, ?, ?)",
+    delete: "DELETE FROM users WHERE id = ?",
+    findAll: "SELECT * FROM users",
+    findById: "SELECT * FROM users WHERE id = ?",
+    update: "UPDATE users SET name = ?, password = ? WHERE id = ?",
+    findByEmail: "SELECT * FROM users WHERE email = ?",
+  );
 }

@@ -1,5 +1,5 @@
 import 'package:shelf/shelf.dart';
-import 'apis/blog_api.dart';
+import 'apis/news_api.dart';
 import 'apis/login_api.dart';
 import 'apis/user_api.dart';
 import 'infra/custom_server.dart';
@@ -13,8 +13,8 @@ void main() async {
 
   var cascadeHandler = Cascade()
       .add(_di.getInstance<LoginApi>().getHandler())
-      .add(_di.getInstance<BlogApi>().getHandler(isSecurity: true))
-      .add(_di.getInstance<UserApi>().getHandler(isSecurity: true))
+      .add(_di.getInstance<NewsApi>().getHandler(isSecurity: true))
+      .add(_di.getInstance<UserApi>().getHandler())
       .handler;
   var handler = Pipeline()
       .addMiddleware(logRequests())

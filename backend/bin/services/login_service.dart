@@ -14,7 +14,7 @@ class LoginService {
       if (user == null) return -1;
       return Password.verify(to.password, user.password!) ? user.id! : -1;
     } catch (e) {
-      throw Exception("ERRO/DB -> in Authenticate method by email ${to.email}");
+      throw Exception("ERROR/DB -> in Authenticate method by email ${to.email}");
     }
   }
 }
