@@ -1,13 +1,13 @@
 import '../infra/database/db_configuration.dart';
 import '../infra/database/sql_user_queries.dart';
 import '../models/user_model.dart';
-import 'dao.dart';
+import 'repository.dart';
 
-class UserDAO implements DAO<UserModel> {
+class UserRepository implements Repository<UserModel> {
   final DBConfiguration _dbConfiguration;
   final SQLUserQueries _sqlUserQuery;
 
-  UserDAO(this._dbConfiguration) : _sqlUserQuery = SQLUserQueries();
+  UserRepository(this._dbConfiguration) : _sqlUserQuery = SQLUserQueries();
 
   @override
   Future<bool> create(UserModel value) async {

@@ -13,21 +13,20 @@ class NewsModel {
       ..id = map["id"]?.toInt()
       ..title = map["title"]
       ..description = map["description"].toString()
-      ..createdAt = map["createdAt"]
-      ..updatedAt = map["updatedAt"]
-      ..userId = map["user_id"]?.toInt();
-  }
-
-  factory NewsModel.fromRequest(Map map) {
-    return NewsModel()
-      ..id = map["id"]?.toInt()
-      ..title = map["title"]
-      ..description = map["description"]
+      ..createdAt = map["created_at"]
+      ..updatedAt = map["updated_at"]
       ..userId = map["user_id"]?.toInt();
   }
 
   Map toJson() {
-    return {"id": id, "title": title, "description": description};
+    return {
+      "id": id,
+      "title": title,
+      "description": description,
+      "user_id": userId,
+      "created_at": createdAt?.toIso8601String(),
+      "updated_at": updatedAt?.toIso8601String(),
+    };
   }
 
   @override

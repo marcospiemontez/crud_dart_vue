@@ -1,34 +1,35 @@
-import '../dao/news_dao.dart';
 import '../models/news_model.dart';
+import '../repositories/news_repository.dart';
 import 'generic_service.dart';
 
 class NewsService implements GenericService<NewsModel> {
-  final NewsDao _newsDao;
-  NewsService(this._newsDao);
+  final NewsRepository _newsRepository;
+
+  NewsService(this._newsRepository);
 
   @override
   Future<bool> delete(int id) async {
-    _newsDao.delete(id);
+    _newsRepository.delete(id);
     return true;
   }
 
   @override
   Future<List<NewsModel>> findAll() async {
-    return await _newsDao.findAll();
+    return await _newsRepository.findAll();
   }
 
   @override
   Future<NewsModel?> findById(int id) async {
-    return await _newsDao.findById(id);
+    return await _newsRepository.findById(id);
   }
 
   @override
   Future<bool> save(NewsModel value) async {
     Future<bool> result;
     if (value.id != null) {
-      result = _newsDao.update(value);
+      result = _newsRepository.update(value);
     } else {
-      return await _newsDao.create(value);
+      return await _newsRepository.create(value);
     }
 
     return result;

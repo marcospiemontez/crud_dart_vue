@@ -1,9 +1,9 @@
-import '../../apis/news_api.dart';
-import '../../apis/login_api.dart';
-import '../../apis/user_api.dart';
-import '../../dao/news_dao.dart';
-import '../../dao/user_dao.dart';
+import '../../controllers/login_controller.dart';
+import '../../controllers/news_controller.dart';
+import '../../controllers/user_controller.dart';
 import '../../models/news_model.dart';
+import '../../repositories/news_repository.dart';
+import '../../repositories/user_repository.dart';
 import '../../services/generic_service.dart';
 import '../../services/login_service.dart';
 import '../../services/news_service.dart';
@@ -26,21 +26,22 @@ class Injects {
 
     di.register<SecurityService>(() => SecurityServiceImp());
 
-    di.register<NewsDao>(() => NewsDao(di.getInstance<DBConfiguration>()));
+    di.register<NewsRepository>(() => NewsRepository(di.getInstance<DBConfiguration>()));
 
-    di.register<GenericService<NewsModel>>(() => NewsService(di.getInstance<NewsDao>()));
+    di.register<GenericService<NewsModel>>(() => NewsService(di.getInstance<NewsRepository>()));
 
-    di.register<NewsApi>(() => NewsApi(di.getInstance<GenericService<NewsModel>>()));
+    di.register<NewsController>(() => NewsController(di.getInstance<GenericService<NewsModel>>()));
 
-    di.register<UserDAO>(() => UserDAO(di.getInstance<DBConfiguration>()));
+    di.register<UserRepository>(() => UserRepository(di.getInstance<DBConfiguration>()));
 
-    di.register<UserService>(() => UserService(di.getInstance<UserDAO>()));
+    di.register<UserService>(() => UserService(di.getInstance<UserRepository>()));
 
-    di.register<UserApi>(() => UserApi(di.getInstance<UserService>()));
+    di.register<UserController>(() => UserController(di.getInstance<UserService>()));
 
     di.register<LoginService>(() => LoginService(di.getInstance<UserService>()));
 
-    di.register<LoginApi>(() => LoginApi(di.getInstance<SecurityService>(), di.getInstance<LoginService>()));
+    di.register<LoginController>(
+        () => LoginController(di.getInstance<SecurityService>(), di.getInstance<LoginService>()));
 
     return di;
   }

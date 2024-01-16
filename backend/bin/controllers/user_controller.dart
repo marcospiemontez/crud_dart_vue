@@ -1,15 +1,15 @@
+import '../dto/user_dto.dart';
+import 'controller.dart';
 import 'dart:convert';
-
 import 'package:shelf/shelf.dart';
 import 'package:shelf_router/shelf_router.dart';
 import '../models/user_model.dart';
 import '../services/user_service.dart';
-import 'api.dart';
 
-class UserApi extends Api {
+class UserController extends Controller {
   final UserService _userService;
 
-  UserApi(this._userService);
+  UserController(this._userService);
 
   @override
   Handler getHandler({List<Middleware>? middlewares, bool isSecurity = false}) {
@@ -18,8 +18,14 @@ class UserApi extends Api {
     router.post('/user', (Request req) async {
       var body = await req.readAsString();
       if (body.isEmpty) return Response(400);
-      var user = UserModel.fromRequest(jsonDecode(body));
-      var result = await _userService.save(user);
+
+      var userDTo = UserDTO.fromRequest(jsonDecode(body));
+      var userModel = UserModel()
+      ..name = userDTo.name
+      ..email = userDTo.email
+      ..password = userDTo.password;
+
+      var result = await _userService.save(userModel);
       return result ? Response(201) : Response(500);
     });
 

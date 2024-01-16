@@ -26,25 +26,25 @@ class AppConfig implements EnvironmentConfig {
   }
 
   @override
-  String get dbHost => _config['DB_HOST']as String;
+  String get dbHost => _config['DB_HOST'] as String;
 
   @override
   int get dbPort => _config['DB_PORT']?.toType(int);
 
   @override
-  String get dbUser => _config['DB_USER']as String;
+  String get dbUser => _config['DB_USER'] as String;
 
   @override
-  String get dbPass => _config['DB_PASS']as String;
+  String get dbPass => _config['DB_PASS'] as String;
 
   @override
-  String get dbSchema => _config['DB_SCHEMA']as String;
+  String get dbSchema => _config['DB_SCHEMA'] as String;
 
   @override
-  String get jwtKey => _config['JWT_KEY']as String;
+  String get jwtKey => _config['JWT_KEY'] as String;
 
   @override
-  String get serverAddress => _config['SERVER_ADDRESS']as String;
+  String get serverAddress => _config['SERVER_ADDRESS'] as String;
 
   @override
   int get serverPort => _config['SERVER_PORT']?.toType(int);

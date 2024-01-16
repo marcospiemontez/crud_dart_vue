@@ -1,13 +1,13 @@
 import '../infra/database/db_configuration.dart';
 import '../infra/database/sql_news_queries.dart';
 import '../models/news_model.dart';
-import 'dao.dart';
+import 'repository.dart';
 
-class NewsDao implements DAO<NewsModel> {
+class NewsRepository implements Repository<NewsModel> {
   final DBConfiguration _dbConfiguration;
   final SQLNewsQueries _sqlNewsQuery;
 
-  NewsDao(this._dbConfiguration) : _sqlNewsQuery = SQLNewsQueries();
+  NewsRepository(this._dbConfiguration) : _sqlNewsQuery = SQLNewsQueries();
 
   @override
   Future<bool> create(NewsModel value) async {

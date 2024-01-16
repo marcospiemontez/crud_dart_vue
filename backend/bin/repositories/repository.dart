@@ -1,4 +1,4 @@
-abstract class DAO<T> {
+abstract class Repository<T> {
   Future<bool> create(T value);
 
   Future<T?> findById(int id);

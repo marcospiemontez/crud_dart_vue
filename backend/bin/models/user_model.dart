@@ -29,13 +29,6 @@ class UserModel {
     );
   }
 
-  factory UserModel.fromRequest(Map map) {
-    return UserModel()
-      ..name = map["name"]
-      ..email = map["email"]
-      ..password = map["password"];
-  }
-
   factory UserModel.fromEmail(Map map) {
     return UserModel()
       ..id = map["id"]?.toInt()

@@ -1,6 +1,5 @@
 import 'package:password_dart/password_dart.dart';
-
-import '../to/auth_to.dart';
+import '../dto/auth_dto.dart';
 import 'user_service.dart';
 
 class LoginService {
@@ -8,13 +7,13 @@ class LoginService {
 
   LoginService(this._userService);
 
-  Future<int> authenticate(AuthTO to) async {
+  Future<int> authenticate(AuthDTO dto) async {
     try {
-      var user = await _userService.findByEmail(to.email);
+      var user = await _userService.findByEmail(dto.email);
       if (user == null) return -1;
-      return Password.verify(to.password, user.password!) ? user.id! : -1;
+      return Password.verify(dto.password, user.password!) ? user.id! : -1;
     } catch (e) {
-      throw Exception("ERROR/DB -> in Authenticate method by email ${to.email}");
+      throw Exception("ERROR/DB -> in Authenticate method by email ${dto.email}");
     }
   }
 }
