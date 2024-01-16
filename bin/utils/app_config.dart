@@ -44,7 +44,7 @@ class AppConfig implements EnvironmentConfig {
   String get jwtKey => _config['JWT_KEY'] as String;
 
   @override
-  String get serverAddress => _config['SERVER_ADDRESS'] as String;
+  String get serverAddress => _config['SERVER_ADDRESS']as String;
 
   @override
   int get serverPort => _config['SERVER_PORT']?.toType(int);
