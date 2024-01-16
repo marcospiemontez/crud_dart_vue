@@ -14,11 +14,12 @@ void main() async {
   var cascadeHandler = Cascade()
       .add(_di.getInstance<LoginApi>().getHandler())
       .add(_di.getInstance<NewsApi>().getHandler(isSecurity: true))
-      .add(_di.getInstance<UserApi>().getHandler())
+      .add(_di.getInstance<UserApi>().getHandler(isSecurity: true))
       .handler;
   var handler = Pipeline()
       .addMiddleware(logRequests())
-      .addMiddleware(MiddlewareInterception().middleware)
+      .addMiddleware(MInterception.contentTypeJson)
+      .addMiddleware(MInterception.cors)
       .addHandler(cascadeHandler);
 
   await CustomServer().initialize(handler: handler, address: envConfig.serverAddress, port: envConfig.serverPort);
