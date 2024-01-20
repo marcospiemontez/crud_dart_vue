@@ -53,12 +53,9 @@ class SecurityServiceImp implements SecurityService<JWT> {
             String token = authorizationHeader.substring(7);
             jwt = await validateJWT(token);
           }
-
-          var request = req.change(context: {"jwt": jwt});
-          return handler(request);
         }
-
-        return Response.forbidden("Authorization header missing or invalid");
+        var request = req.change(context: {"jwt": jwt});
+        return handler(request);
       };
     };
   }

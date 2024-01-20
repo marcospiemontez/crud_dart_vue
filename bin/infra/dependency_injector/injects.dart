@@ -1,6 +1,7 @@
 import '../../controllers/login_controller.dart';
 import '../../controllers/news_controller.dart';
 import '../../controllers/user_controller.dart';
+import '../../controllers/user_registration_controller.dart';
 import '../../models/news_model.dart';
 import '../../repositories/news_repository.dart';
 import '../../repositories/user_repository.dart';
@@ -26,22 +27,23 @@ class Injects {
 
     di.register<SecurityService>(() => SecurityServiceImp());
 
-    di.register<NewsRepository>(() => NewsRepository(di.getInstance<DBConfiguration>()));
+    di.register<NewsRepository>(() => NewsRepository(di.get<DBConfiguration>()));
 
-    di.register<GenericService<NewsModel>>(() => NewsService(di.getInstance<NewsRepository>()));
+    di.register<GenericService<NewsModel>>(() => NewsService(di.get<NewsRepository>()));
 
-    di.register<NewsController>(() => NewsController(di.getInstance<GenericService<NewsModel>>()));
+    di.register<NewsController>(() => NewsController(di.get<GenericService<NewsModel>>()));
 
-    di.register<UserRepository>(() => UserRepository(di.getInstance<DBConfiguration>()));
+    di.register<UserRepository>(() => UserRepository(di.get<DBConfiguration>()));
 
-    di.register<UserService>(() => UserService(di.getInstance<UserRepository>()));
+    di.register<UserService>(() => UserService(di.get<UserRepository>()));
 
-    di.register<UserController>(() => UserController(di.getInstance<UserService>()));
+    di.register<UserRegistrationController>(() => UserRegistrationController(di.get<UserService>()));
 
-    di.register<LoginService>(() => LoginService(di.getInstance<UserService>()));
+    di.register<UserController>(() => UserController(di.get<UserService>()));
 
-    di.register<LoginController>(
-        () => LoginController(di.getInstance<SecurityService>(), di.getInstance<LoginService>()));
+    di.register<LoginService>(() => LoginService(di.get<UserService>()));
+
+    di.register<LoginController>(() => LoginController(di.get<SecurityService>(), di.get<LoginService>()));
 
     return di;
   }

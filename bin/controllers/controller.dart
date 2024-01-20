@@ -8,7 +8,7 @@ abstract class Controller {
 
   Handler createHandler({required Handler router, List<Middleware>? middlewares, bool isSecurity = false}) {
     middlewares ??= [];
-    var _securityService = DependencyInjector().getInstance<SecurityService>();
+    var _securityService = DependencyInjector().get<SecurityService>();
 
     if (isSecurity) {
       middlewares.addAll([

@@ -9,8 +9,8 @@ class PipelineBuilder {
 
     return Pipeline()
         .addMiddleware(logRequests())
-        .addMiddleware(MInterception.contentTypeJson)
         .addMiddleware(MInterception.cors)
+        .addMiddleware(MInterception.contentTypeJson)
         .addHandler(cascadeHandler);
   }
 }

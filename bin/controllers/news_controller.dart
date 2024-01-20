@@ -68,6 +68,6 @@ class NewsController extends Controller {
       return result ? Response(200) : Response.internalServerError();
     });
 
-    return createHandler(router: router, middlewares: middlewares, isSecurity: isSecurity);
+    return createHandler(router: router, middlewares: middlewares);
   }
 }

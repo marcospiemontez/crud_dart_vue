@@ -29,6 +29,6 @@ class LoginController extends Controller {
       }
     });
 
-    return createHandler(router: router, middlewares: middlewares, isSecurity: isSecurity);
+    return createHandler(router: router, middlewares: middlewares);
   }
 }

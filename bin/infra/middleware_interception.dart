@@ -8,7 +8,11 @@ class MInterception {
       );
 
   static Middleware get cors {
-    final allowedHeaders = {"Access-Control-Allow-Origin": "*"};
+    final allowedHeaders = {
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Headers": "Authorization, Content-Type",
+      "Access-Control-Allow-Methods": "POST, OPTIONS",
+    };
 
     Response? headerOptions(Request req) {
       if (req.method == 'OPTIONS') {

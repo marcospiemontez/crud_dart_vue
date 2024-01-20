@@ -15,7 +15,7 @@ class _InstanceGenerator<T> {
       _isFirstGet = false;
     }
 
-    return _instance as T;
+    return _instance ?? _instanceCreator();
   }
 }
 
@@ -32,12 +32,9 @@ class DependencyInjector {
     _instanceMap[T] = _InstanceGenerator(instance, isSingleton);
   }
 
-  T getInstance<T extends Object>() {
-    final instanceGenerator = _instanceMap[T];
-    if (instanceGenerator != null) {
-      final instance = instanceGenerator.getInstance();
-      if (instance != null && instance is T) return instance;
-    }
+  T get<T extends Object>() {
+    final instance = _instanceMap[T]?.getInstance();
+    if (instance != null && instance is T) return instance;
 
     throw Exception("[Error] -> Instance of type ${T.toString()} not found in DependencyInjector.");
   }
