@@ -9,5 +9,6 @@ class SQLUserQueries extends SQLQueries {
           findById: "SELECT * FROM users WHERE id = ?",
           update: "UPDATE users SET name = ?, password = ? WHERE id = ?",
           findByEmail: "SELECT * FROM users WHERE email = ?",
+          findByIdAndEmail: "SELECT * FROM users WHERE id = ? AND email = ?",
         );
 }

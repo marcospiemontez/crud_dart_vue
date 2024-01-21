@@ -43,4 +43,9 @@ class UserRepository implements Repository<UserModel> {
     var result = await _dbConfiguration.execQuery(_sqlUserQuery.findByEmail!, [email]);
     return result.affectedRows == 0 ? null : UserModel.fromEmail(result.first.fields);
   }
+
+  Future<UserModel?> findByIdAndEmail(int id, String email) async {
+    var result = await _dbConfiguration.execQuery(_sqlUserQuery.findByIdAndEmail!, [id, email]);
+    return result.affectedRows == 0 ? null : UserModel.fromMap(result.first.fields);
+  }
 }

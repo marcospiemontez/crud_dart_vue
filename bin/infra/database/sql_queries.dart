@@ -5,6 +5,7 @@ class SQLQueries {
   final String findById;
   final String update;
   final String? findByEmail;
+  final String? findByIdAndEmail;
 
   SQLQueries({
     required this.create,
@@ -13,5 +14,6 @@ class SQLQueries {
     required this.findById,
     required this.update,
     this.findByEmail,
+    this.findByIdAndEmail,
   });
 }

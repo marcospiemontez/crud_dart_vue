@@ -9,10 +9,10 @@ class SecurityServiceImp implements SecurityService<JWT> {
   final envConfig = AppConfig();
 
   @override
-  Future<String> generateJWT(String userID) async {
+  Future<String> generateJWT(Object user) async {
     var jwt = JWT({
       "iat": DateTime.now().millisecondsSinceEpoch,
-      "userID": userID,
+      "user": user,
       "roles": ["admin", "user"],
     });
 

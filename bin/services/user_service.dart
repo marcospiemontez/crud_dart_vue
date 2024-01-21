@@ -31,4 +31,8 @@ class UserService implements GenericService<UserModel> {
   }
 
   Future<UserModel?> findByEmail(String email) async => _userRepository.findByEmail(email);
+
+  Future<UserModel?> findByIdAndEmail(int id, String email) async {
+    return _userRepository.findByIdAndEmail(id, email);
+  }
 }

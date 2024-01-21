@@ -21,8 +21,15 @@ class LoginController extends Controller {
       var authDTO = AuthDTO.fromRequest(body);
 
       var userId = await _loginService.authenticate(authDTO);
+
+      var user = {
+        'id': userId.toString(),
+        'email': authDTO.email,
+      };
+
       if (userId > 0) {
-        var jwt = await _securityService.generateJWT(userId.toString());
+        var jwt = await _securityService.generateJWT(user);
+
         return Response.ok(jsonEncode({"token": jwt}));
       } else {
         return Response(401);
