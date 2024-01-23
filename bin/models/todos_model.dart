@@ -1,4 +1,4 @@
-class NewsModel {
+class TodosModel {
   int? id;
   String? title;
   String? description;
@@ -6,10 +6,10 @@ class NewsModel {
   DateTime? updatedAt;
   int? userId;
 
-  NewsModel();
+  TodosModel();
 
-  factory NewsModel.fromMap(Map map) {
-    return NewsModel()
+  factory TodosModel.fromMap(Map map) {
+    return TodosModel()
       ..id = map["id"]?.toInt()
       ..title = map["title"]
       ..description = map["description"].toString()
@@ -31,6 +31,6 @@ class NewsModel {
 
   @override
   String toString() {
-    return 'NewsModel{id: $id, title: $title, description: $description, createdAt: $createdAt, updatedAt: $updatedAt, userId: $userId}';
+    return 'TodosModel{id: $id, title: $title, description: $description, createdAt: $createdAt, updatedAt: $updatedAt, userId: $userId}';
   }
 }

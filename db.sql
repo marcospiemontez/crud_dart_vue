@@ -13,7 +13,7 @@ CREATE TABLE IF NOT EXISTS `dart`.`users` (
   PRIMARY KEY (`id`)
 ) ENGINE = InnoDB;
 
-CREATE TABLE IF NOT EXISTS `dart`.`news` (
+CREATE TABLE IF NOT EXISTS `dart`.`todos` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `title` VARCHAR(255) NOT NULL,
   `description` LONGTEXT NOT NULL,

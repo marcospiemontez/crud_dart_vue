@@ -1,13 +1,13 @@
-class NewsDTO {
+class TodosDTO {
   int? id;
   String? title;
   String? description;
   int? userId;
 
-  NewsDTO({this.id, this.title, this.description, this.userId});
+  TodosDTO({this.id, this.title, this.description, this.userId});
 
-  factory NewsDTO.fromRequest(Map map) {
-    return NewsDTO()
+  factory TodosDTO.fromRequest(Map map) {
+    return TodosDTO()
       ..id = map["id"]?.toInt()
       ..title = map["title"]
       ..description = map["description"]

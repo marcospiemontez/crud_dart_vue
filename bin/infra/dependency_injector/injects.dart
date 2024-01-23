@@ -1,13 +1,13 @@
 import '../../controllers/login_controller.dart';
-import '../../controllers/news_controller.dart';
+import '../../controllers/todos_controller.dart';
 import '../../controllers/user_controller.dart';
 import '../../controllers/user_registration_controller.dart';
-import '../../models/news_model.dart';
-import '../../repositories/news_repository.dart';
+import '../../models/todos_model.dart';
+import '../../repositories/todos_repository.dart';
 import '../../repositories/user_repository.dart';
 import '../../services/generic_service.dart';
 import '../../services/login_service.dart';
-import '../../services/news_service.dart';
+import '../../services/todos_service.dart';
 import '../../services/user_service.dart';
 import '../../utils/app_config.dart';
 import '../../utils/environment_config.dart';
@@ -27,11 +27,11 @@ class Injects {
 
     di.register<SecurityService>(() => SecurityServiceImp());
 
-    di.register<NewsRepository>(() => NewsRepository(di.get<DBConfiguration>()));
+    di.register<TodosRepository>(() => TodosRepository(di.get<DBConfiguration>()));
 
-    di.register<GenericService<NewsModel>>(() => NewsService(di.get<NewsRepository>()));
+    di.register<GenericService<TodosModel>>(() => TodosService(di.get<TodosRepository>()));
 
-    di.register<NewsController>(() => NewsController(di.get<GenericService<NewsModel>>()));
+    di.register<TodosController>(() => TodosController(di.get<GenericService<TodosModel>>()));
 
     di.register<UserRepository>(() => UserRepository(di.get<DBConfiguration>()));
 
